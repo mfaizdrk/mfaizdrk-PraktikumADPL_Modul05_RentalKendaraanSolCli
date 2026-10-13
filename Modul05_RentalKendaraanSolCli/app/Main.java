@@ -5,6 +5,7 @@ import controller.RentalController;
 import model.Mobil;
 import model.Motor;
 import model.Minibus;
+import model.MobilPremium;
 
 public class Main {
         public static void main(String[] args) {
@@ -30,6 +31,11 @@ public class Main {
                         "L 7777 GH", 
                         "Toyota Hiace", 
                         900000)
+                );
+                controller.tambahDataAwal(new MobilPremium(
+                        "L 9999 VIP", 
+                        "Toyota Alphard",
+                        1500000)
                 );
 
                 controller.jalankan();

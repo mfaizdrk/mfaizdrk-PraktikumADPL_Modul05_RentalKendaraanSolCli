@@ -71,10 +71,15 @@ public class RentalController {
                 }
                 String nama = view.bacaTeks("Nama Penyewa");
                 int hari = (int) view.bacaAngka("Lama sewa (hari)");
-                if (hari < 1) {
-                        view.tampilPesan("Lama sewa minimal 1 hari.");
+
+                //[LSP] Validasi memakai kontrak kelas induk, BUKAN instanceof MobilPremium.
+                //      Berlaku sama untuk semua jenis, termasuk jenis yang dibuat nanti.
+                if (hari < kendaraan.getMinimalHari()) {
+                        view.tampilPesan(kendaraan.getMerk() + " minimal disewa "
+                                + kendaraan.getMinimalHari() + " hari.");
                         return;
                 }
+                
                 //[OCP] Controller tidak tahu dan tidak perlu tahu jenis kendaraannya.
                 //      Polimorfisme memilih hitungBiaya() milik subclass yang tepat.
                 long total = kendaraan.hitungBiaya(hari);
